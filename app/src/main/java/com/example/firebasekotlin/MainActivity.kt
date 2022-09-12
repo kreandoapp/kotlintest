@@ -44,10 +44,10 @@ class MainActivity : AppCompatActivity() {
             val lista = ArrayList<Productos>()
 
             for (item in viewmodel.cart.value!!){
-                if(item.id == id){
-                    lista.add(Productos(item.id,texto,item.cantidad,item.precio))
+                if(item.idprod == id){
+                    lista.add(Productos(item.idprod,item.idcate,texto,item.cantidad,item.precio))
                 }else{
-                    lista.add(Productos(item.id,item.nombre,item.cantidad,item.precio))
+                    lista.add(Productos(item.idprod,item.idcate,item.nombre,item.cantidad,item.precio))
                 }
 
                 viewmodel.cart.value = lista
@@ -65,8 +65,8 @@ class MainActivity : AppCompatActivity() {
             val lista = ArrayList<Productos>()
 
             for (item in viewmodel.cart.value!!){
-                if(item.id != id){
-                    lista.add(Productos(item.id,item.nombre,item.cantidad,item.precio))
+                if(item.idprod != id){
+                    lista.add(Productos(item.idprod,item.idcate,item.nombre,item.cantidad,item.precio))
                 }
 
             }
@@ -77,12 +77,12 @@ class MainActivity : AppCompatActivity() {
             if(viewmodel.cart.value == null){
                 val list = mutableListOf<Productos>()
                 val random = kotlin.math.abs((0..999999999999).random())
-                list.add(Productos(random.toString(),"Burger","1",400))
+                list.add(Productos(random.toString(),"","Burger","1",400))
                 viewmodel.cart.value = list
             }else{
                 val random = kotlin.math.abs((0..999999999999).random())
                 val list = mutableListOf<Productos>()
-                list.add(Productos(random.toString(),"Burger2","1",400))
+                list.add(Productos(random.toString(),"","Burger2","1",400))
                 viewmodel.cart.value = viewmodel.cart.value!! + list
             }
 
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
                 for (cart in it){
                     //Log.d("tag",cart.id)
                     total += cart.precio
-                    Log.d("productos", "Id - ${cart.id} - Nombre: ${cart.nombre}- precio: ${cart.precio} - cantidad : ${cart.cantidad}")
+                    Log.d("productos", "Id - ${cart.idprod} - Nombre: ${cart.nombre}- precio: ${cart.precio} - cantidad : ${cart.cantidad}")
                     //Log.d("tag",total.toString()) //total
                     binding.tvTotal.text = total.toString()
                 }

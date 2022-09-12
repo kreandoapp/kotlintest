@@ -41,7 +41,7 @@ class FirebaseViewModel : ViewModel() {
         val lista = ArrayList<Productos>()
 
         for (item in cart.value!!){
-            lista.add(Productos(item.id,item.nombre,item.cantidad,item.precio))
+            lista.add(Productos(item.idprod,item.idcate,item.nombre,item.cantidad,item.precio))
         }
 
         lista.remove(item)
